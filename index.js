@@ -5,6 +5,11 @@ const cookieParser = require('cookie-parser');
 const path= require('path');
 const expressLayouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
+// required for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('./config/passport-local-startegy');
+
 
 app.use(expressLayouts);
 
@@ -13,7 +18,23 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 
-// use the express router
+
+
+// seeing up session and secret key for passport authentication
+app.use(session({
+    name: 'codeial',
+    secret: 'blahsomething',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        maxAge: (1000 * 60 * 100) }
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+
+  // use the express router
 const routes= require('./routes');
 app.use('/',routes);
 

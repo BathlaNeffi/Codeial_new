@@ -47,5 +47,5 @@ module.exports.create= async (req,res)=>{
 
 // action for create Session
 module.exports.createSession=(req,res)=>{
-    // To de done latter
+    return res.redirect('/');
 }
