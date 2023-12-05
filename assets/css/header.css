@@ -1,0 +1,28 @@
+#head {
+  display: flex;
+  background-color: lightblue;
+  justify-content: space-between;
+}
+
+#head h3 {
+  margin: auto 20px;
+  font-family: sans-serif;
+  font-size: 2rem;
+}
+
+#head ul {
+  display: flex;
+}
+
+#head ul li {
+  list-style-type: none;
+  margin: auto 20px;
+}
+
+#head ul li a {
+  text-decoration: none;
+  padding: 8px;
+  background-color: darkblue;
+  color: lightcyan;
+  border-radius: 8px;
+}

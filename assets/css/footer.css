@@ -1,0 +1,26 @@
+footer {
+  height: 60px;
+  display: flex;
+  background-color: grey;
+}
+
+footer h3 {
+  margin: auto 20px;
+  color: white;
+}
+
+footer ul {
+  display: flex;
+}
+
+footer ul li {
+  list-style-type: none;
+  margin: auto 10px;
+}
+
+footer ul li a {
+  text-decoration: none;
+  padding: 8px;
+  color: white;
+  border-radius: 8px;
+}

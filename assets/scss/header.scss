@@ -1,0 +1,27 @@
+#head{
+    display: flex;
+    background-color: lightblue;
+    justify-content: space-between;
+    h3{
+        margin: auto 20px;
+        font-family: sans-serif;
+        font-size: 2rem;
+    }
+    ul{
+        display: flex;
+        li{
+            list-style-type: none;
+            margin: auto 20px;
+            a{
+                text-decoration: none;
+                padding: 8px;
+                background-color: darkblue;
+                color: lightcyan;
+                border-radius: 8px;
+            }
+            
+        }
+        
+
+    }
+}
