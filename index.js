@@ -9,6 +9,7 @@ const db=require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('./config/passport-local-startegy');
+const MongoStore=require('connect-mongo');
 
 
 app.use(expressLayouts);
@@ -18,7 +19,7 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 
-
+// monoStore is use to store session cookies in db
 
 // seeing up session and secret key for passport authentication
 app.use(session({
@@ -27,11 +28,21 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        maxAge: (1000 * 60 * 100) }
+        maxAge: (1000 * 60 * 100) },
+    store : MongoStore.create (
+            {
+                mongoUrl: 'mongodb://localhost:27017/codial_development',
+            autoRemove: 'disable'
+            },
+        function(err){
+            console.log(err || 'connected-mongodb setup ok');
+        }
+    )
   }));
 
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(passport.setAuthenticateUser);
 
 
   // use the express router
