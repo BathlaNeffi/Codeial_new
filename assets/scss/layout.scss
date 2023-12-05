@@ -2,6 +2,7 @@ body{
     margin: auto;
     /* text-align: center; */
     main{
-            height:  calc(100vh - 132px);
+            height:  calc(100vh - 120px);
+            overflow: scroll;
         }
     }
