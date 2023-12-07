@@ -12,58 +12,19 @@
         </form>
         <div id="posts-list-container">
             <ul>
-                <% for ( let i of wallPost) { %> 
-                     
-                    <p>
-                        <% if(locals.user && i.user.id ==locals.user.id ){ %> 
-                            <small>
-                                <a href="/posts/destroy/<%=i.id%>">X</a>
-                            </small>
-                            <%}%>
-
-                        <li><%= i.content %></li>
-                        <small>
-                           Post created by : &nbsp; <%=i.user.name %>
-                        </small>
-                    </p>
-
-                    <div class="post-comments">
-                        <% if(locals.user){%>
-                        <form action="/comments/create" method="post">
-                            <input type="text" name="content"  placeholder="Please leave your comment..">
-                            <input type="hidden" name="post" value="<%=i._id %>">
-                            <input type="submit" value=" Add Comment">
-                        </form>
-                    <%}%>
-                        
-                    </div>
-                    <div class="post-comments-list">
-                        <ul id="post-comments-<%=i._id%>">
-                            <% for ( let comment of i.comments) { %> 
-                                <p>
-                                    <% if(locals.user && comment.user.id ==locals.user.id ){ %> 
-                                        <small>
-                                            <a href="/comments/destroy/<%=comment.id%>">X</a>
-                                        </small>
-                                        <%}%>
-
-                                    <li><%= comment.content %></li>
-                                    <small>
-                                       comment created by : &nbsp; <%=comment.user.name %>
-                                    </small>
-                                </p>
-                            <%}%>
-
-                        </ul>
-                    </div>
-                    
-                   
-                 
-                <%} %>
-        
+            <% for (i of wallPost) { %> 
+            <%- include('_post'); %>
+            <%} %>
             </ul>
-    
-
         </div>
+    </section>
+    <section id="user-friend">
+        <h4>Friends</h4>
+        <% for(u of all_users){%>
+            <p>
+                <a href="/users/profile/<%=u.id%>"> <%=u.name%></a>
+            </p>
+        <%}%>
+        
     </section>
 

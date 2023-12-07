@@ -1,10 +1,33 @@
 const User = require('../models/user');
-module.exports.users=(req,res)=>{
+module.exports.users=async (req,res)=>{
     // res.end('<h1>Users Profile</h1>')
+    const user= await User.findById(req.params.id);
     return res.render('user_profile',{
-        title:"Neffi's Profile"
+        title:"Profile",
+        profile_user:user
     })
 }
+// user update
+
+module.exports.update= async(req,res)=>{
+    try {
+        if(req.user.id==req.params.id){
+            const user= await User.findByIdAndUpdate(req.params.id,{name: req.body.name,email:req.body.email});
+            if(user){
+                return res.redirect('back');
+            }
+        }else{
+            return res.status(401).send('Unauthorized');
+        }
+       
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
 // render the Sign-In page
 
 module.exports.signIn=(req,res)=>{
