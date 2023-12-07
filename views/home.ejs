@@ -13,6 +13,11 @@
         <div id="posts-list-container">
             <ul>
                 <% for ( let i of wallPost) { %> 
+                     <% if(locals.user && i.user.id ==locals.user.id ){ %> 
+                    <small>
+                        <a href="/posts/destroy/<%=i.id%>">X</a>
+                    </small>
+                    <%}%>
                     <p>
                         <li><%= i.content %></li>
                         <small>
