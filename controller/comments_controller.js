@@ -21,4 +21,24 @@ module.exports.create=async (req,res)=>{
     } catch (error) {
         console.log(error);
     }
+};
+
+module.exports.destroy= async(req,res)=>{
+    try {
+
+        const comment= await Comment.findById(req.params.id);
+        if(comment){
+            if(comment.user==req.user.id){
+                const postId=comment.post;
+                await Comment.deleteOne({_id : comment.id});
+                await Post.findByIdAndUpdate(postId,{$pull: {comments: req.params.id}});
+                return res.redirect('back');
+            }
+        }else{
+            return res.redirect('back');
+        }
+        
+    } catch (error) {
+        console.log(error);
+    }
 }

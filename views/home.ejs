@@ -13,12 +13,14 @@
         <div id="posts-list-container">
             <ul>
                 <% for ( let i of wallPost) { %> 
-                     <% if(locals.user && i.user.id ==locals.user.id ){ %> 
-                    <small>
-                        <a href="/posts/destroy/<%=i.id%>">X</a>
-                    </small>
-                    <%}%>
+                     
                     <p>
+                        <% if(locals.user && i.user.id ==locals.user.id ){ %> 
+                            <small>
+                                <a href="/posts/destroy/<%=i.id%>">X</a>
+                            </small>
+                            <%}%>
+
                         <li><%= i.content %></li>
                         <small>
                            Post created by : &nbsp; <%=i.user.name %>
@@ -39,6 +41,12 @@
                         <ul id="post-comments-<%=i._id%>">
                             <% for ( let comment of i.comments) { %> 
                                 <p>
+                                    <% if(locals.user && comment.user.id ==locals.user.id ){ %> 
+                                        <small>
+                                            <a href="/comments/destroy/<%=comment.id%>">X</a>
+                                        </small>
+                                        <%}%>
+
                                     <li><%= comment.content %></li>
                                     <small>
                                        comment created by : &nbsp; <%=comment.user.name %>

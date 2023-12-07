@@ -7,7 +7,7 @@ module.exports.create=async(req,res)=>{
                     user: req.user._id
                 });
                 if(postCreated){
-                    console.log(postCreated.content);
+                    // console.log(postCreated.content);
                     return res.redirect('back');
                 }
             
