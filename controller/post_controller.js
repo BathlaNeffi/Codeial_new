@@ -8,6 +8,7 @@ module.exports.create=async(req,res)=>{
                 });
                 if(postCreated){
                     // console.log(postCreated.content);
+                    req.flash('success','Post created Sucesssfull!');
                     return res.redirect('back');
                 }
             
@@ -27,6 +28,7 @@ module.exports.destroy= async(req,res)=>{
                 
 
                 await Comment.deleteMany({ post: req.params.id});
+                req.flash('success', 'post and Associated commets Deleted')
                 return res.redirect('back');  
             }else{
                 console.log('error in deleting post');

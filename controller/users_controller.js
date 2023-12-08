@@ -77,6 +77,7 @@ module.exports.create= async (req,res)=>{
 
 // action for create Session
 module.exports.createSession=(req,res)=>{
+    req.flash('success','Logged in sucessfully!!');
     return res.redirect('/');
 }
 
@@ -86,7 +87,9 @@ module.exports.destroySession=async (req,res)=>{
     try {
         await req.logout( (err)=>{
         
-            if(err){console.log(err);}
+            if(err){console.log(err);
+            }
+            req.flash('success','You have LoggedOut!!');
             return res.redirect('/');
         })
         
