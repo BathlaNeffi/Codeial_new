@@ -6,11 +6,19 @@ module.exports.create=async(req,res)=>{
                     content:req.body.content,
                     user: req.user._id
                 });
-                if(postCreated){
-                    // console.log(postCreated.content);
-                    req.flash('success','Post created Sucesssfull!');
-                    return res.redirect('back');
+
+                if(req.xhr){
+                    return res.status(200).json({
+                        data:{
+                            post:postCreated
+                        },
+                        message:'Post created !!'
+                    })
                 }
+                // console.log(postCreated.content);
+                req.flash('success','Post created Sucesssfull!');
+                return res.redirect('back');
+                
             
     } catch (error) {
         console.log(error);

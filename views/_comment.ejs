@@ -1,5 +1,4 @@
 <li>
-    <% for ( let comment of i.comments) { %> 
         <p>
             <% if(locals.user && comment.user.id ==locals.user.id ){ %> 
                 <small>
@@ -11,5 +10,4 @@
                comment created by : &nbsp; <%=comment.user.name %>
             </small>
         </p>
-    <%}%>
 </li>
