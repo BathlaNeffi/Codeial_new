@@ -11,9 +11,9 @@
             data:newPostForm.serialize(),
             success: function(data){
                 // console.log(data);
-                let newPost=newPostDom(data.data.post,data.data.user);
+                let newPost=newPostDom(data.data.post);
                 $('#posts-list-container>ul').prepend(newPost);
-                deletPost($(` .delete-post-button`,newPost));
+                deletePost($(` .delete-post-button`,newPost));
 
                 new Noty({
                     theme:'relax',
@@ -32,7 +32,7 @@
     };
 
     // method to create DOM
-    let newPostDom= function(post,user){
+    let newPostDom= function(post){
        return $(`
         <li id="post-${post._id}">         
         <p>
@@ -44,7 +44,7 @@
 
                 ${post.content}
             <small>
-               Post created by : &nbsp; ${user.name}
+               Post created by : &nbsp; ${post.user.name}
             </small>
         </p>
 
@@ -66,7 +66,7 @@
     }
 
     //  method  to delete  a post from DOM
-    let deletPost = function (deleteLink){
+    let deletePost = function (deleteLink){
         $(deleteLink).click(function(e){
             e.preventDefault();
             
@@ -93,14 +93,18 @@
 
     // converting post to ajax
 
-    function convertPostToAjax(){
-        $('#posts-list-container>ul').each(function(){
-            let self=$(this);
-            let deleteButton=$(` .delete-post-button`,self);
-            deletPost(deleteButton);
-        })
-    };
-    convertPostToAjax();
+    let convertPostsToAjax = function(){
+        $('#posts-list-container>ul>').each(function(){
+            let self = $(this);
+            let deleteButton = $(' .delete-post-button', self);
+            deletePost(deleteButton);
+
+            // // get the post's id by splitting the id attribute
+            // let postId = self.prop('id').split("-")[1]
+            // new PostComments(postId);
+        });
+    }
+    convertPostsToAjax();
  
     createPost();
 }
