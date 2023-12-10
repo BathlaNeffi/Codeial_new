@@ -50,7 +50,7 @@
 
         <div class="post-comments">
            
-            <form action="/comments/create" method="post">
+            <form action="/comments/create" method="post" id="post-${post._id}-comments-form" >
                 <input type="text" name="content"  placeholder="Please leave your comment.." required>
                 <input type="hidden" name="post" value="${post._id }">
                 <input type="submit" value=" Add Comment">
@@ -99,9 +99,10 @@
             let deleteButton = $(' .delete-post-button', self);
             deletePost(deleteButton);
 
-            // // get the post's id by splitting the id attribute
-            // let postId = self.prop('id').split("-")[1]
-            // new PostComments(postId);
+            // get the post's id by splitting the id attribute
+            let postId = self.prop('id').split("-")[1]
+            new PostComments(postId);
+            
         });
     }
     convertPostsToAjax();

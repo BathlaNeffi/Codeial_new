@@ -5,16 +5,29 @@ module.exports.create=async (req,res)=>{
     try {
         const post= await Post.findById(req.body.post);
         if(post){
-            const commentCreated= await Comment.create({
+            let commentCreated= await Comment.create({
                 content: req.body.content,
                 user: req.user._id,
                 post: req.body.post
             });
-                if(commentCreated){
+               
                 post.comments.push(commentCreated);
                 post.save();
+
+                if (req.xhr){
+                    // Similar for comments to fetch the user's id!
+                    commentCreated = await Comment.findById(commentCreated.id).populate('user').exec();
+        
+                    return res.status(200).json({
+                        data: {
+                            comment: commentCreated
+                        },
+                        message: "Post created!"
+                    });
+                }
+
                 return res.redirect('back');
-            }
+            
         }
         
 
@@ -32,6 +45,16 @@ module.exports.destroy= async(req,res)=>{
                 const postId=comment.post;
                 await Comment.deleteOne({_id : comment.id});
                 await Post.findByIdAndUpdate(postId,{$pull: {comments: req.params.id}});
+
+
+                if (req.xhr){
+                    return res.status(200).json({
+                        data: {
+                            comment_id: req.params.id
+                        },
+                        message: "Post deleted"
+                    });
+                }
                 return res.redirect('back');
             }
         }else{
