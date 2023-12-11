@@ -70,6 +70,10 @@ app.set('views',path.join(__dirname,'./views'));
 // console.log(path.join(__dirname,'./views'));
 
 app.use(express.static('./assets'));
+
+// way to declare upload file path make the upload path avliable to the browser
+app.use('/uploads',express.static(__dirname +'/uploads'));
+
 // extract style and scripts from sub pages into the payout
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
