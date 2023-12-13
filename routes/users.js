@@ -17,4 +17,11 @@ passport.authenticate('local',{
 
 router.get('/sign-out',usersController.destroySession);
 
+
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile','email']}));
+
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/users/sign-in'}),usersController.createSession);
+
 module.exports=router;
