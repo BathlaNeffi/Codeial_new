@@ -8,7 +8,8 @@ const db=require('./config/mongoose');
 // required for session cookie
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('./config/passport-local-startegy');
+const passportLocal = require('./config/passport-local-startegy');
+const passportJWT = require('./config/passport-jwt-strategy');
 const MongoStore=require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');

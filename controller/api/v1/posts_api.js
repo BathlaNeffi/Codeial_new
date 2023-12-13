@@ -17,7 +17,7 @@ module.exports.destroy= async(req,res)=>{
         
         const post= await Post.findById(req.params.id);
         
-            // if(post.user == req.user.id){
+            if(post.user == req.user.id){
                 await Post.deleteOne({_id:req.params.id});
                 
 
@@ -29,10 +29,12 @@ module.exports.destroy= async(req,res)=>{
             
             
            
-                // }
-                // else{
-                //        return res.redirect('back');  
-                // }
+                }
+                else{
+                       return res.json(401,{
+                        message:'you can not delete this post'
+                       })  
+                }
     } catch (error) {
       return res.status(500).json({
         message:"Internal Server Error"
