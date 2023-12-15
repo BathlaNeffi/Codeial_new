@@ -15,7 +15,7 @@ module.exports.newComment= async (comment)=>{
             console.log('Error in  sending  mail', err);
             return;
         }
-        console.log('Message Sent', info);
+        // console.log('Message Sent', info);
         return;
     }
     )
