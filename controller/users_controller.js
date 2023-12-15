@@ -1,6 +1,9 @@
 const User = require('../models/user');
+const resetPassword= require('../models/resetPassword');
 const fs= require('fs');
 const path= require('path');
+const resetUserMailer= require('../mailers/reset_password');
+const crypto= require('crypto');
 module.exports.users=async (req,res)=>{
     // res.end('<h1>Users Profile</h1>')
     const user= await User.findById(req.params.id);
@@ -121,4 +124,74 @@ module.exports.destroySession=async (req,res)=>{
     
 };
 
+
+module.exports.forgot_password=(req,res)=>{
+    return res.render('user_forgot_password',{
+        title:"Forgot password"
+    });
+}
+
+module.exports.forgot_password_form=async(req,res)=>{
+    // console.log(req.body);
+    let user=await User.findOne({email:req.body.email});
+
+    let isUser= await resetPassword.findOneAndDelete({user:user._id});
+    
+    let resetUser= await resetPassword.create({
+        user:user,
+        accessToken:crypto.randomBytes(20).toString('hex'),
+        isValid:"true",
+    });
+
+    resetUser=await resetPassword.findById(resetUser._id) .populate('user').exec();
+
+    console.log(resetUser.user.name);
+
+    resetUserMailer.resetPassword(resetUser);
+
+    return res.send("Please check your email and click on the link avalible there!! Note:- The link is valid for 10min only");
+}
+
+
+
+module.exports.confirmResetPassword=async(req,res)=>{
+
+    try {
+        // console.log(req.query.accessToken);
+        let token=req.query.accessToken;
+        let resetUser= await resetPassword.findOne({accessToken:token});
+        if(resetUser){
+            return res.render('user_confirm_reset_password',{
+                title:'Reset Password',
+                resetUser:resetUser
+            });
+    
+        }
+        
+    } catch (error) {
+        console.log('Eroor in ConfimresetPassword :' ,error);
+    }
+   
+};
+
+module.exports.confirmResetPasswordPost=async(req,res)=>{
+    try {
+        let resetUserId=req.body.resetUserId;
+        if(req.body.password==req.body.confirmPassword){
+            let resetUser= await resetPassword.findById(resetUserId);
+            if(resetUser){
+                const user= await User.findByIdAndUpdate(resetUser.user,{password:req.body.password});
+                if(user){
+                    await resetPassword.findByIdAndUpdate(resetUserId,{isValid:false});
+                    return res.redirect('/users/sign-in');
+                }
+            }
+        }else{
+            return res.redirect('back');
+        }
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
 
