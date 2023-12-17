@@ -10,6 +10,17 @@
             <small>
                Post created by : &nbsp; <%=i.user.name %>
             </small>
+            <br>
+            <% if(locals.user){%> 
+                <small>
+                    <a class="toggle-like-button" data-likes="<%=i.likes.length%>" href="/likes/toggle/?id=<%=i._id%>&type=Post">
+                         <%=i.likes.length%> Likes
+                    </a>
+                </small>
+                <%} else {%>
+                    <%=i.likes.length%> Likes
+                <%}%>
+
         </p>
 
         <div class="post-comments">
