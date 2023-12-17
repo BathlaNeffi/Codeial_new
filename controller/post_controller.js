@@ -39,8 +39,9 @@ module.exports.destroy= async(req,res)=>{
                 
 
                 await Comment.deleteMany({ post: req.params.id});
-                let islikeDele=await Like.deleteMany({likeable:post._id,onModel:'Post'});
-                await Like.deleteMany({_id: {$in :post.comments}});
+                await Like.deleteMany({likeable:post._id,onModel:'Post'});
+                let islikeDele=await Like.deleteMany({likeable: {$in :post.comments}});
+                // console.log(Boolean(islikeDele));
 
                 if(req.xhr){
                     return res.status(200).json({

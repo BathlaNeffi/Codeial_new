@@ -33,7 +33,7 @@ module.exports.toggleLike= async(req,res)=>{
                 });
                
                     await likeable.likes.push(newLike._id);
-                    await likeable.save();
+                    likeable.save();
                
             }
 
