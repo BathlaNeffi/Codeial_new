@@ -1,4 +1,8 @@
+
 const express = require('express');
+const dotenv=require('dotenv');
+dotenv.config();
+const env = require('./config/environment');
 const app=express();
 const port = 8000;
 const cookieParser = require('cookie-parser');
@@ -22,15 +26,18 @@ const chatSockets=require('./config/chat_socket').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
 
+if(env.name=='development'){
+    app.use(sassMiddleware({
+        src:path.join(__dirname,env.assets_path,'/scss'),
+        dest: path.join(__dirname,env.assets_path,'/css'),
+        debug: false,
+        outputStyle: 'expanded',
+        prefix:'/css'
+    
+    }));
+}
 
-app.use(sassMiddleware({
-    src:'./assets/scss',
-    dest: './assets/css',
-    debug: false,
-    outputStyle: 'expanded',
-    prefix:'/css'
 
-}));
 
 
 app.use(expressLayouts);
@@ -45,7 +52,7 @@ app.use(cookieParser());
 // seeing up session and secret key for passport authentication
 app.use(session({
     name: 'codeial',
-    secret: 'blahsomething',
+    secret: env.session_cookie_key,
     resave: false,
     saveUninitialized: false,
     cookie: { 
@@ -78,7 +85,7 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'./views'));
 // console.log(path.join(__dirname,'./views'));
 
-app.use(express.static('./assets'));
+app.use(express.static(env.assets_path));
 
 // way to declare upload file path make the upload path avliable to the browser
 app.use('/uploads',express.static(__dirname +'/uploads'));
