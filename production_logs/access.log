@@ -1,0 +1,23 @@
+[0mGET / [32m200[0m 91.192 ms - 8163[0m
+[0mGET /js/home_post_comments.js [36m304[0m 12.907 ms - -[0m
+[0mGET /js/toggle_likes.js [36m304[0m 17.118 ms - -[0m
+[0mGET /js/chat_engine.js [36m304[0m 22.562 ms - -[0m
+[0mGET /js/home_posts.js [36m304[0m 38.448 ms - -[0m
+[0mGET /users/sign-in [36m304[0m 12.222 ms - -[0m
+[0mGET /css/header.css [32m200[0m 17.012 ms - 399[0m
+[0mGET /css/layout.css [32m200[0m 18.660 ms - 119[0m
+[0mGET /css/footer.css [32m200[0m 16.069 ms - 317[0m
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:27 +0000] "GET /users/sign-in HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:27 +0000] "GET /css/header.css HTTP/1.1" 304 - "http://127.0.0.1:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:27 +0000] "GET /css/layout.css HTTP/1.1" 304 - "http://127.0.0.1:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:27 +0000] "GET /css/footer.css HTTP/1.1" 304 - "http://127.0.0.1:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET / HTTP/1.1" 200 2266 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /css/layout.css HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /css/footer.css HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /js/home_post_comments.js HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /css/home.css HTTP/1.1" 200 188 "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /css/header.css HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /js/toggle_likes.js HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /css/chat_box.css HTTP/1.1" 200 1173 "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /js/chat_engine.js HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [18/Dec/2023:18:36:32 +0000] "GET /js/home_posts.js HTTP/1.1" 304 - "http://127.0.0.1:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"

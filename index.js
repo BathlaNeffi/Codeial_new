@@ -2,6 +2,7 @@
 const express = require('express');
 const dotenv=require('dotenv');
 dotenv.config();
+const logger= require('morgan');
 const env = require('./config/environment');
 const app=express();
 const port = 8000;
@@ -37,7 +38,7 @@ if(env.name=='development'){
     }));
 }
 
-
+app.use(logger(env.morgan.mode,env.morgan.options))
 
 
 app.use(expressLayouts);
