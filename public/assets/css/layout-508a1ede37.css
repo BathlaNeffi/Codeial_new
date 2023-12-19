@@ -1,0 +1,9 @@
+body {
+  margin: auto;
+  /* text-align: center; */
+}
+
+body main {
+  height: calc(100vh - 120px);
+  overflow: scroll;
+}
