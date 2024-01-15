@@ -61,7 +61,7 @@ app.use(session({
         maxAge: (1000 * 60 * 100) },
     store : MongoStore.create (
             {
-                mongoUrl: 'mongodb://localhost:27017/codeial_development',
+                mongoUrl: `mongodb+srv://${process.env.PLACEMENT_CELL_REMOTE_DB}`,
             autoRemove: 'disable'
             },
         function(err){
